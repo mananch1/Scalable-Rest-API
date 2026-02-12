@@ -135,4 +135,4 @@ PrimeTrade.ai/
 ```
 
 ---
-**Developed by [Your Name] for PrimeTrade.ai**
+**Developed by Manan Chahal for PrimeTrade.ai internship screening task**
