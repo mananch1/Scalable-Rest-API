@@ -20,11 +20,25 @@ export const AuthProvider = ({ children }) => {
 
     useEffect(() => {
         if (token) {
-            // Decode token or fetch user profile if endpoint exists
-            // For now, we'll just simulate persistent login
-            // Ideally, verify token with backend
-            const storedUser = JSON.parse(localStorage.getItem('user'));
-            if (storedUser) setUser(storedUser);
+            try {
+                // Decode token or fetch user profile if endpoint exists
+                // For now, we'll just simulate persistent login
+                // Ideally, verify token with backend
+                const storedUser = localStorage.getItem('user');
+                if (storedUser && storedUser !== "undefined") {
+                    setUser(JSON.parse(storedUser));
+                } else {
+                    // Invalid user data found, clear it
+                    localStorage.removeItem('user');
+                    localStorage.removeItem('token');
+                    setToken(null);
+                }
+            } catch (err) {
+                console.error("Failed to parse user from local storage", err);
+                localStorage.removeItem('user');
+                localStorage.removeItem('token');
+                setToken(null);
+            }
         }
         setLoading(false);
     }, [token]);
@@ -33,9 +47,13 @@ export const AuthProvider = ({ children }) => {
         try {
             const { data } = await axios.post(`${API_URL}/auth/login`, { email, password });
             localStorage.setItem('token', data.token);
-            localStorage.setItem('user', JSON.stringify(data.user));
+            // The API returns the user object directly mixed with the token, not nested in .user
+            const userData = { ...data };
+            delete userData.token; // Optional: don't store token inside user object
+
+            localStorage.setItem('user', JSON.stringify(userData));
             setToken(data.token);
-            setUser(data.user);
+            setUser(userData);
             return { success: true };
         } catch (error) {
             return {
@@ -49,9 +67,13 @@ export const AuthProvider = ({ children }) => {
         try {
             const { data } = await axios.post(`${API_URL}/auth/register`, { name, email, password, role });
             localStorage.setItem('token', data.token);
-            localStorage.setItem('user', JSON.stringify(data.user));
+            // The API returns the user object directly mixed with the token, not nested in .user
+            const userData = { ...data };
+            delete userData.token;
+
+            localStorage.setItem('user', JSON.stringify(userData));
             setToken(data.token);
-            setUser(data.user);
+            setUser(userData);
             return { success: true };
         } catch (error) {
             return {

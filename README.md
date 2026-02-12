@@ -4,6 +4,11 @@
 > **Backend Developer Intern Assignment**  
 > A secure, scalable MERN stack application featuring Role-Based Access Control (RBAC), JWT Authentication, and a premium frontend dashboard.
 
+## 🚀 Live Demo
+*   **Frontend**: [https://scalable-rest-api-frontend.vercel.app/](https://scalable-rest-api-frontend.vercel.app/)
+*   **Backend API**: [https://scalable-rest-api-backend.vercel.app/](https://scalable-rest-api-backend.vercel.app/)
+*   **API Documentation**: [https://scalable-rest-api-backend.vercel.app/api-docs](https://scalable-rest-api-backend.vercel.app/api-docs)
+
 ![Dashboard Screenshot](images/image1.png)
 
 ## 📌 Project Overview
@@ -37,7 +42,7 @@ The core focus is on writing **clean, modular, and testable code** that is ready
     *   Integrated **Swagger UI** for interactive API testing and documentation.
 
 ### Admin Portal
-The secure admin login and dashboard for managing users and system-wide tasks.
+The secure admin dashboard with role based restrictions allowing the admins to only view and delete taks but not mark them as complete for the user.
 
 ![Admin Portal](images/admin_login.png)
 
