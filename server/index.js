@@ -13,7 +13,9 @@ const PORT = process.env.PORT || 5000;
 // Middleware
 app.use(express.json());
 app.use(cors());
-app.use(helmet());
+app.use(helmet({
+    contentSecurityPolicy: false,
+}));
 
 // Swagger Config
 const swaggerOptions = {
