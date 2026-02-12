@@ -17,8 +17,8 @@ This repository contains a full-stack MERN application developed for the Backend
 - **Tools**: Swagger, Postman.
 
 ## Deployment
-- **Frontend**: Vercel
-- **Backend**: Vercel (Serverless) / Railway / Render
+- **Frontend**: Vercel / Netlify
+- **Backend**: Railway / Render / AWS EC2 (Scalable Node.js Server)
 
 ## Setup Instructions
 1. **Backend**: Navigate to `server/`, run `npm install`, then `npm run dev`.
