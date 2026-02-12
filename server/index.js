@@ -6,6 +6,7 @@ const cors = require('cors');
 const helmet = require('helmet');
 const swaggerUi = require('swagger-ui-express');
 const swaggerJsdoc = require('swagger-jsdoc');
+const path = require('path');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -53,7 +54,7 @@ const swaggerOptions = {
             },
         ],
     },
-    apis: ['./routes/*.js'], // Path to the API docs
+    apis: [path.join(__dirname, './routes/*.js')], // Absolute Path to the API docs
 };
 
 const swaggerSpec = swaggerJsdoc(swaggerOptions);
