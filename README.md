@@ -9,6 +9,10 @@
 *   **Backend API**: [https://scalable-rest-api-backend.vercel.app/](https://scalable-rest-api-backend.vercel.app/)
 *   **API Documentation**: [https://scalable-rest-api-backend.vercel.app/api-docs](https://scalable-rest-api-backend.vercel.app/api-docs)
 
+### 🔑 Test Credentials
+*   **User**: `test@gmail.com` / `test123`
+*   **Admin**: `admin@gmail.com` / `admin123`
+
 ![Dashboard Screenshot](images/image1.png)
 
 ## 📌 Project Overview
