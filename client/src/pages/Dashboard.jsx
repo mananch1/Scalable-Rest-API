@@ -2,6 +2,7 @@
 import { useState, useEffect, useContext } from 'react';
 import AuthContext from '../context/AuthContext';
 import axios from 'axios';
+import API_URL from '../config';
 import { useForm } from 'react-hook-form';
 import { toast, ToastContainer } from 'react-toastify';
 import {
@@ -34,7 +35,7 @@ const Dashboard = () => {
 
     const fetchTasks = async () => {
         try {
-            const { data } = await axios.get('http://localhost:5000/api/tasks');
+            const { data } = await axios.get(`${API_URL}/tasks`);
             setTasks(data);
             setLoading(false);
         } catch (error) {
@@ -49,7 +50,7 @@ const Dashboard = () => {
 
     const onCreateTask = async (data) => {
         try {
-            await axios.post('http://localhost:5000/api/tasks', data);
+            await axios.post(`${API_URL}/tasks`, data);
             toast.success('Task created successfully');
             reset();
             setIsFormOpen(false);
@@ -63,7 +64,7 @@ const Dashboard = () => {
         e.stopPropagation();
         if (!window.confirm('Delete this task?')) return;
         try {
-            await axios.delete(`http://localhost:5000/api/tasks/${id}`);
+            await axios.delete(`${API_URL}/tasks/${id}`);
             toast.success('Task deleted');
             setTasks(tasks.filter(t => t._id !== id));
         } catch (error) {
@@ -82,7 +83,7 @@ const Dashboard = () => {
         try {
             const newStatus = task.status === 'completed' ? 'pending' : 'completed';
             setTasks(tasks.map(t => t._id === task._id ? { ...t, status: newStatus } : t));
-            await axios.put(`http://localhost:5000/api/tasks/${task._id}`, { status: newStatus });
+            await axios.put(`${API_URL}/tasks/${task._id}`, { status: newStatus });
         } catch (error) {
             toast.error('Failed to update task');
             fetchTasks();

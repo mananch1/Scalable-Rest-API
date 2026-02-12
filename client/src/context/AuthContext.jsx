@@ -2,6 +2,7 @@
 import { createContext, useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import API_URL from '../config';
 
 const AuthContext = createContext();
 
@@ -30,11 +31,11 @@ export const AuthProvider = ({ children }) => {
 
     const login = async (email, password) => {
         try {
-            const { data } = await axios.post('http://localhost:5000/api/auth/login', { email, password });
+            const { data } = await axios.post(`${API_URL}/auth/login`, { email, password });
             localStorage.setItem('token', data.token);
-            localStorage.setItem('user', JSON.stringify(data));
+            localStorage.setItem('user', JSON.stringify(data.user));
             setToken(data.token);
-            setUser(data);
+            setUser(data.user);
             return { success: true };
         } catch (error) {
             return {
@@ -46,11 +47,11 @@ export const AuthProvider = ({ children }) => {
 
     const register = async (name, email, password, role = 'user') => {
         try {
-            const { data } = await axios.post('http://localhost:5000/api/auth/register', { name, email, password, role });
+            const { data } = await axios.post(`${API_URL}/auth/register`, { name, email, password, role });
             localStorage.setItem('token', data.token);
-            localStorage.setItem('user', JSON.stringify(data));
+            localStorage.setItem('user', JSON.stringify(data.user));
             setToken(data.token);
-            setUser(data);
+            setUser(data.user);
             return { success: true };
         } catch (error) {
             return {
