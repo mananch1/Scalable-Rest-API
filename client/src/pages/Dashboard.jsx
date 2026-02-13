@@ -147,13 +147,13 @@ const Dashboard = () => {
             <main className="main-content">
 
                 {/* Top Header */}
-                <header style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2.5rem' }}>
+                <header className="dashboard-header">
                     <div>
                         <h1 style={{ margin: 0, fontSize: '2rem', fontWeight: '700' }}>Welcome back, {user?.name.split(' ')[0]}</h1>
                         <p style={{ margin: '0.5rem 0 0', color: 'var(--text-secondary)' }}>Here's what's happening today.</p>
                     </div>
-                    <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
-                        <div style={{ position: 'relative' }}>
+                    <div className="dashboard-search-container">
+                        <div className="search-input-wrapper">
                             <Search size={18} style={{ position: 'absolute', left: '1rem', top: '50%', transform: 'translateY(-50%)', color: 'var(--text-secondary)' }} />
                             <input
                                 className="input-premium"
@@ -211,7 +211,7 @@ const Dashboard = () => {
                     )}
                 </div>
 
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 350px', gap: '2rem' }}>
+                <div className="dashboard-content">
 
                     {/* Task List */}
                     <div className="animate-fade-in" style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
